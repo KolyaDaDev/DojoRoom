@@ -6,6 +6,7 @@ import Room from './Room.js'
 export default class World {
 	constructor() {
 		this.experience = new Experience()
+		this.renderer = this.experience.renderer
 
 		this.resources = this.experience.resources
 
@@ -18,5 +19,9 @@ export default class World {
 		})
 	}
 
-	update() {}
+	update() {
+		if (this.room) {
+			this.room.update()
+		}
+	}
 }

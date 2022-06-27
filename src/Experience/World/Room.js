@@ -11,17 +11,33 @@ export default class Room {
 
 		// Scene
 		this.resource_objects = this.resources.items.objects
-		console.log(this.resource_objects)
+		this.resource_floor = this.resources.items.floor
+		this.resource_walls = this.resources.items.walls
 
-		// -> Scene Texture (bakedTexture)
+		// -> Scene Textures (bakedTextures)
 		this.objectsBakedTexture = this.resources.items.objectsBakedTexture
-		console.log(this.objectsBakedTexture)
 		this.objectsBakedTexture.flipY = false
 		this.objectsBakedTexture.encoding = THREE.sRGBEncoding
-		this.bakedMaterial = new THREE.MeshBasicMaterial({
+		this.objectsBakedMaterial = new THREE.MeshBasicMaterial({
 			map: this.objectsBakedTexture,
 		})
+		this.floorBakedTexture = this.resources.items.floorBakedTexture
+		this.floorBakedTexture.flipY = false
+		this.floorBakedTexture.encoding = THREE.sRGBEncoding
+		this.floorBakedMaterial = new THREE.MeshBasicMaterial({
+			map: this.floorBakedTexture,
+		})
+		this.wallsBakedTexture = this.resources.items.wallsBakedTexture
+		this.wallsBakedTexture.flipY = false
+		this.wallsBakedTexture.encoding = THREE.sRGBEncoding
+		this.wallsBakedMaterial = new THREE.MeshBasicMaterial({
+			map: this.wallsBakedTexture,
+		})
+
 		// -> Shaders
+
+		// -> Animations
+		this.clock = new THREE.Clock()
 
 		// Debug
 		if (this.debug.active) {
@@ -33,24 +49,37 @@ export default class Room {
 	}
 
 	setModel() {
+		// objects
 		this.model_objects = this.resource_objects.scene
-		console.log(this.model_objects)
-
 		this.model_objects.traverse((child) => {
-			child.material = this.objectsBakedTexture
+			child.material = this.objectsBakedMaterial
 		})
 
-		// this.mug = this.model.children.find((child) => child.name === 'Mug')
-		// console.log(this.mug)
+		// floor
+		this.model_floor = this.resource_floor.scene
+		this.model_floor.traverse((child) => {
+			child.material = this.floorBakedMaterial
+		})
+		// walls
+		this.model_walls = this.resource_walls.scene
+		this.model_walls.traverse((child) => {
+			child.material = this.wallsBakedMaterial
+		})
+
+		this.tape = this.model_objects.children.find((child) => child.name === 'tape')
+		console.log(this.tape)
 
 		//scene elements [call the joined main model "joinedBake"]
 		// this.mainRoom = this.model.children.find(()=>child.name === "joinedBake")
 		// this.mainRoom.material = this.bakedMaterial
 
-		this.scene.add(this.model_objects)
+		this.scene.add(this.model_objects, this.model_floor, this.model_walls)
 	}
 
 	setDebug() {}
 
-	update() {}
+	update() {
+		this.elapsed = this.clock.getElapsedTime()
+		this.tape.position.y = Math.sin(this.elapsed) * 0.2 + 0.2
+	}
 }

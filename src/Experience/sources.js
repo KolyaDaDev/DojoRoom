@@ -21,4 +21,24 @@ export default [
 		type: 'texture',
 		path: 'models/bakedObjects.jpg',
 	},
+	{
+		name: 'floor',
+		type: 'gltfModel',
+		path: 'models/floor.glb',
+	},
+	{
+		name: 'floorBakedTexture',
+		type: 'texture',
+		path: 'models/bakedFloor.jpg',
+	},
+	{
+		name: 'walls',
+		type: 'gltfModel',
+		path: 'models/walls.glb',
+	},
+	{
+		name: 'wallsBakedTexture',
+		type: 'texture',
+		path: 'models/bakedWalls.jpg',
+	},
 ]
