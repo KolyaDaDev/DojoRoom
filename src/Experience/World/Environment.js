@@ -1,17 +1,27 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
-
+import Fog from './Fog'
 export default class Environment {
 	constructor() {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.debug = this.experience.debug
+		this.instance = this.experience.renderer.instance
+		this.instance.setClearColor('#061018')
 
 		// Debug
 		if (this.debug.active) {
 			this.debugFolder = this.debug.ui.addFolder('environment')
 		}
+		this.debugObject = {
+			bgColor: '#f9e6c5',
+		}
+
+		/**
+		 * Fog
+		 */
+		this.fog = new Fog()
 
 		this.setSunLight()
 		this.setEnvironmentMap()
@@ -55,6 +65,9 @@ export default class Environment {
 				.min(-5)
 				.max(5)
 				.step(0.001)
+			this.debugFolder.addColor(this.debugObject, 'bgColor').onChange(() => {
+				this.instance.setClearColor(this.debugObject.bgColor)
+			})
 		}
 	}
 

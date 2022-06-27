@@ -80,6 +80,6 @@ export default class Room {
 
 	update() {
 		this.elapsed = this.clock.getElapsedTime()
-		this.tape.position.y = Math.sin(this.elapsed) * 0.2 + 0.2
+		this.tape.position.y = Math.sin(this.elapsed * 2) * 0.05 + 0.2
 	}
 }
