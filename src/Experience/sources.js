@@ -11,34 +11,65 @@ export default [
 			'textures/environmentMap/nz.jpg',
 		],
 	},
+
 	{
-		name: 'objects',
+		name: 'theDojo',
 		type: 'gltfModel',
-		path: 'models/objects.glb',
+		path: 'models/TheDojoV3.glb',
 	},
+
 	{
-		name: 'objectsBakedTexture',
+		name: 'bakedTexture',
 		type: 'texture',
-		path: 'models/bakedObjects.jpg',
+		path: 'models/baked.jpg',
+	},
+
+	{
+		name: 'bakedHelio',
+		type: 'texture',
+		path: 'models/bakedHelio.jpg',
 	},
 	{
-		name: 'floor',
+		name: 'bakedKano',
+		type: 'texture',
+		path: 'models/bakedKano.jpg',
+	},
+	{
+		name: 'bakedSymbolsRight',
+		type: 'texture',
+		path: 'models/bakedSymbolsRight.jpg',
+	},
+	{
+		name: 'bakedSymbolsLeftTop',
+		type: 'texture',
+		path: 'models/bakedSymbolsLeftTop.jpg',
+	},
+	{
+		name: 'bakedSymbolsLeftBottom',
+		type: 'texture',
+		path: 'models/bakedSymbolsLeftBottom.jpg',
+	},
+	{
+		name: 'bakedTempleSymbols',
+		type: 'texture',
+		path: 'models/bakedTempleSymbols.jpg',
+	},
+
+	// TESTING
+	{
+		name: 'testTexture',
+		type: 'texture',
+		path: 'models/testTexture2.jpg',
+	},
+
+	{
+		name: 'model1',
 		type: 'gltfModel',
-		path: 'models/floor.glb',
+		path: 'models/testing/model1.glb',
 	},
 	{
-		name: 'floorBakedTexture',
+		name: 'model1bake',
 		type: 'texture',
-		path: 'models/bakedFloor.jpg',
-	},
-	{
-		name: 'walls',
-		type: 'gltfModel',
-		path: 'models/walls.glb',
-	},
-	{
-		name: 'wallsBakedTexture',
-		type: 'texture',
-		path: 'models/bakedWalls.jpg',
+		path: 'models/testing/model1bake.jpg',
 	},
 ]

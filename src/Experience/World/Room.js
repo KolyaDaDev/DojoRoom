@@ -1,5 +1,7 @@
 import * as THREE from 'three'
+
 import Experience from '../Experience'
+import RoomBakes from './RoomBakes'
 
 export default class Room {
 	constructor() {
@@ -10,29 +12,12 @@ export default class Room {
 		this.debug = this.experience.debug
 
 		// Scene
-		this.resource_objects = this.resources.items.objects
-		this.resource_floor = this.resources.items.floor
-		this.resource_walls = this.resources.items.walls
+		this.resource_theDojo = this.resources.items.theDojo
+
+		// this.modelTest1Resource = this.resources.items.model1
 
 		// -> Scene Textures (bakedTextures)
-		this.objectsBakedTexture = this.resources.items.objectsBakedTexture
-		this.objectsBakedTexture.flipY = false
-		this.objectsBakedTexture.encoding = THREE.sRGBEncoding
-		this.objectsBakedMaterial = new THREE.MeshBasicMaterial({
-			map: this.objectsBakedTexture,
-		})
-		this.floorBakedTexture = this.resources.items.floorBakedTexture
-		this.floorBakedTexture.flipY = false
-		this.floorBakedTexture.encoding = THREE.sRGBEncoding
-		this.floorBakedMaterial = new THREE.MeshBasicMaterial({
-			map: this.floorBakedTexture,
-		})
-		this.wallsBakedTexture = this.resources.items.wallsBakedTexture
-		this.wallsBakedTexture.flipY = false
-		this.wallsBakedTexture.encoding = THREE.sRGBEncoding
-		this.wallsBakedMaterial = new THREE.MeshBasicMaterial({
-			map: this.wallsBakedTexture,
-		})
+		this.roomBakes = new RoomBakes()
 
 		// -> Shaders
 
@@ -49,37 +34,73 @@ export default class Room {
 	}
 
 	setModel() {
-		// objects
-		this.model_objects = this.resource_objects.scene
-		this.model_objects.traverse((child) => {
-			child.material = this.objectsBakedMaterial
+		// objects & emissions
+
+		this.model_theDojo = this.resource_theDojo.scene
+		this.model_theDojo.traverse((c) => {
+			c.material = this.roomBakes.bakedMaterial
 		})
 
-		// floor
-		this.model_floor = this.resource_floor.scene
-		this.model_floor.traverse((child) => {
-			child.material = this.floorBakedMaterial
-		})
-		// walls
-		this.model_walls = this.resource_walls.scene
-		this.model_walls.traverse((child) => {
-			child.material = this.wallsBakedMaterial
-		})
+		// this.modelTest1 = this.modelTest1Resource.scene
+		// this.modelTest1.traverse((c) => {
+		// 	c.material = this.roomBakes.model1bakeMaterial
+		// })
+		console.log(this.model_theDojo)
 
-		this.tape = this.model_objects.children.find((child) => child.name === 'tape')
+		// tape for animation
+		this.tape = this.model_theDojo.children.find(
+			(child) => child.name === 'merged_tape'
+		)
 		console.log(this.tape)
+
+		// pictures on wall of Helio and Kano & symbols on wall scrolls
+
+		for (let i = 0; i < this.model_theDojo.children.length; i++) {
+			switch (this.model_theDojo.children[i].name) {
+				case 'merged_Helio':
+					this.picture_1 = this.model_theDojo.children[i]
+					this.picture_1.material = this.roomBakes.bakedHelioMaterial
+					break
+				case 'merged_Kano':
+					this.picture_2 = this.model_theDojo.children[i]
+					console.log(this.picture_2, 'pic 2')
+					this.picture_2.material = this.roomBakes.bakedKanoMaterial
+					break
+				case 'merged_right_symbol':
+					this.scroll_1 = this.model_theDojo.children[i]
+					this.scroll_1.material = this.roomBakes.bakedSymbolsRightMaterial
+					break
+				case 'merged_bottom_left_symbol':
+					this.scroll_2 = this.model_theDojo.children[i]
+					this.scroll_2.material = this.roomBakes.bakedSymbolsLeftBottomMaterial
+					break
+				case 'merged_top_left_symbol':
+					this.scroll_2 = this.model_theDojo.children[i]
+					this.scroll_2.material = this.roomBakes.bakedSymbolsLeftTopMaterial
+					break
+				case 'merged_temple_symbol':
+					this.templeSymbols = this.model_theDojo.children[i]
+					console.log(this.templeSymbols)
+					this.templeSymbols.material = this.roomBakes.bakedTempleSymbolsMaterial
+					break
+				default:
+					break
+			}
+		}
+		// this.templeSymbols.position.y = 5
+		// this.templeSymbols.scale.set(5, 5, 5)
 
 		//scene elements [call the joined main model "joinedBake"]
 		// this.mainRoom = this.model.children.find(()=>child.name === "joinedBake")
 		// this.mainRoom.material = this.bakedMaterial
 
-		this.scene.add(this.model_objects, this.model_floor, this.model_walls)
+		this.scene.add(this.model_theDojo)
 	}
 
 	setDebug() {}
 
 	update() {
 		this.elapsed = this.clock.getElapsedTime()
-		this.tape.position.y = Math.sin(this.elapsed * 2) * 0.05 + 0.2
+		this.tape.position.y = Math.sin(this.elapsed * 2) * 0.05 + 0.4
 	}
 }
