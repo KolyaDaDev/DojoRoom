@@ -2,6 +2,7 @@ import * as THREE from 'three'
 
 import Experience from '../Experience'
 import RoomBakes from './RoomBakes'
+import Steam from './Plane'
 
 export default class Room {
 	constructor() {
@@ -20,6 +21,7 @@ export default class Room {
 		this.roomBakes = new RoomBakes()
 
 		// -> Shaders
+		this.steam = new Steam('steam', 'steam', [-1.67, 0.45, -0.15])
 
 		// -> Animations
 		this.clock = new THREE.Clock()
@@ -102,5 +104,6 @@ export default class Room {
 	update() {
 		this.elapsed = this.clock.getElapsedTime()
 		this.tape.position.y = Math.sin(this.elapsed * 2) * 0.05 + 0.4
+		this.steam.update()
 	}
 }
