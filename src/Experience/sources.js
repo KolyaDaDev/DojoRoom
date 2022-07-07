@@ -56,20 +56,5 @@ export default [
 	},
 
 	// TESTING
-	{
-		name: 'testTexture',
-		type: 'texture',
-		path: 'models/testTexture2.jpg',
-	},
 
-	{
-		name: 'model1',
-		type: 'gltfModel',
-		path: 'models/testing/model1.glb',
-	},
-	{
-		name: 'model1bake',
-		type: 'texture',
-		path: 'models/testing/model1bake.jpg',
-	},
 ]

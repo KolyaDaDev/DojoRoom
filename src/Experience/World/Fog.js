@@ -7,7 +7,7 @@ export default class Fog {
 		this.scene = this.experience.scene
 		this.debug = this.experience.debug
 
-		this.fog = new THREE.Fog('#e17f23', 4.5, 11.897)
+		this.fog = new THREE.Fog('#f8a659', 4.5, 15.897)
 		this.scene.fog = this.fog
 
 		if (this.debug.active) {
