@@ -38,9 +38,9 @@ export default class Camera {
 
 		// set the degree to which you can orbit around a target. must be between max 2pi and min -2pi.
 		this.controls.maxAzimuthAngle = 1.75
-		this.controls.minAzimuthAngle = -0.25
+		this.controls.minAzimuthAngle = -0.1
 		// amount of possible dollying out.
-		this.controls.maxDistance = 10
+		this.controls.maxDistance = 5
 		// how far to orbit vertically, default pi radians, max is pi.
 		this.controls.maxPolarAngle = Math.PI / 2
 		this.controls.minPolarAngle = Math.PI / 4
@@ -51,7 +51,27 @@ export default class Camera {
 	}
 
 	setDebug() {
-		this.debugFolder.add(this.controls, 'enablePan')
+		if (this.debug.active) {
+			this.debugFolder.add(this.controls, 'enablePan')
+			this.debugFolder
+				.add(this.controls, 'maxAzimuthAngle')
+				.min(0)
+				.max(2)
+				.step(0.1)
+				.name('maxAzimuthAngle')
+			this.debugFolder
+				.add(this.controls, 'minAzimuthAngle')
+				.min(-2)
+				.max(0)
+				.step(0.1)
+				.name('minAzimuthAngle')
+			this.debugFolder
+				.add(this.controls, 'maxDistance')
+				.min(4)
+				.max(10)
+				.step(0.1)
+				.name('maxDistance')
+		}
 	}
 	resize() {
 		this.instance.aspect = this.sizes.width / this.sizes.height

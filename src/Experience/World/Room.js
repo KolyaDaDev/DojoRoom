@@ -2,8 +2,8 @@ import * as THREE from 'three'
 
 import Experience from '../Experience'
 import RoomBakes from './RoomBakes'
-import Steam from './Plane'
 
+import SteamCylinder from './SteamCylinder'
 export default class Room {
 	constructor() {
 		this.experience = new Experience()
@@ -21,7 +21,18 @@ export default class Room {
 		this.roomBakes = new RoomBakes()
 
 		// -> Shaders
-		this.steam = new Steam('steam', 'steam', [-1.67, 0.45, -0.15])
+
+		this.steamCylinder = new SteamCylinder(
+			'steamCone',
+			'steamCone',
+			[-1.68, 0.42, -0.25, 4.5]
+		)
+
+		this.steamCylinderLeft = new SteamCylinder(
+			'steamCone',
+			'steamCone',
+			[-1.7, 0.42, -0.15, 4.7]
+		)
 
 		// -> Animations
 		this.clock = new THREE.Clock()
@@ -104,6 +115,8 @@ export default class Room {
 	update() {
 		this.elapsed = this.clock.getElapsedTime()
 		this.tape.position.y = Math.sin(this.elapsed * 2) * 0.05 + 0.4
-		this.steam.update()
+
+		this.steamCylinder.update()
+		this.steamCylinderLeft.update()
 	}
 }

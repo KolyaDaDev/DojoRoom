@@ -12,6 +12,7 @@ export default class Plane {
 			x: position[0],
 			y: position[1],
 			z: position[2],
+			r: position[3],
 		}
 
 		this.planeName = planeName
@@ -29,8 +30,10 @@ export default class Plane {
 	}
 
 	setPlane() {
-		this.geometry = new THREE.PlaneGeometry(1, 1, 32, 32)
-		this.geometry.scale(0.05, 0.1, 0.1)
+		this.geometry = new THREE.CylinderGeometry(1.5, 3, 10, 40)
+		// this.geometry.parameters.openEnded = true
+		console.log(this.geometry.parameters)
+		this.geometry.scale(0.01, 0.01, 0.01)
 
 		this.material = new THREE.ShaderMaterial({
 			vertexShader: Vertex,
@@ -39,9 +42,9 @@ export default class Plane {
 				uFrequency: { value: new THREE.Vector2(0, 9.4) },
 				uTime: { value: 0 },
 				uColor: { value: new THREE.Color('orange') },
-				uAlpha: { value: 0.53 },
+				uAlpha: { value: 0.24 },
 
-				uSpeedColorChange: { value: 0.0021 },
+				uSpeedColorChange: { value: 0.003 },
 			},
 
 			transparent: true,
@@ -49,7 +52,7 @@ export default class Plane {
 
 		this.plane = new THREE.Mesh(this.geometry, this.material)
 		this.plane.position.set(this.position.x, this.position.y, this.position.z)
-		this.plane.rotation.y = 1.1
+		this.plane.rotation.y = this.position.r
 		this.scene.add(this.plane)
 	}
 
@@ -103,6 +106,8 @@ export default class Plane {
 				.max(0.01)
 				.step(0.0001)
 				.name('color speed change')
+			if (this.planeName === 'steamCone') {
+			}
 		}
 	}
 

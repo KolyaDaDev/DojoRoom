@@ -1,10 +1,12 @@
 	       
 
+		
             uniform float uAlpha;
             uniform float uTime;
             uniform float uSpeedColorChange;
 
 			varying vec2 vUv;
+			varying float yPosition;
 		
 			const int noiseSwirlSteps = 2;
 			const float noiseSwirlValue = 1.;
@@ -155,26 +157,31 @@
 				// textureColor.rgb *= vElevation * uRGBScalar + uRGBAddition;
                 // float strength = vUv.x;
 
-            //    float strength = distance(vUv, vec2(0.5));
-			//    // find the distance of every uv coord to the center. (vec2 0.5)
-            //    strength = step(0.5, strength);
-			//    // if that distrance is less than 0.5, it's equal to 0, else it's one. 
-            //    strength = 1.0 - strength;
-			//    // invert it so that we get everything further than "radius" 0.5 is aplpha = 0.
+            	//    float strength = distance(vUv, vec2(0.5));
+				//    // find the distance of every uv coord to the center. (vec2 0.5)
+            	//    strength = step(0.5, strength);
+				//    // if that distrance is less than 0.5, it's equal to 0, else it's one. 
+            	//    strength = 1.0 - strength;
+				//    // invert it so that we get everything further than "radius" 0.5 is aplpha = 0.
 
-				 float alphaStrength = (1.0 - (vUv.y) + (0.25 -vUv.x)) * uAlpha;
-				 alphaStrength = alphaStrength - (vUv.x*0.5);
+				//  float alphaStrength = (1.0 - (vUv.y) + (0.25 -vUv.x)) * uAlpha;
+				//  alphaStrength = alphaStrength - (vUv.x*0.5);
 
-                float colorChanger = sin(uTime * uSpeedColorChange);
+                // float colorChanger = sin(uTime * uSpeedColorChange);
 		    
                
-				// gl_FragColor = vec4(vUv, colorChanger,strength );?
+				// gl_FragColor = vec4(vUv, colorChanger,strength );
+
+				// // Diffuse point
+    			float strength = distance(vUv, vec2(0.5));
+    			strength *= 2.0;
+    			strength = 1.0 - strength;
 
 			
 			float noise = getNoise(vec3(vUv * noiseScale, (uTime * uSpeedColorChange) * noiseTimeScale));
     		noise = noise * noise * noise * noise * 2.0;  //more contrast
 		
-    		gl_FragColor = vec4(1.0 - noise, 1.0 - noise ,1.0 -  noise, alphaStrength);
+    		gl_FragColor = vec4(1.0 - noise, 1.0 - noise ,1.0 -  noise, (strength * uAlpha)/( yPosition * 2.0));
 
 
 			}

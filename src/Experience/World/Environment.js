@@ -24,7 +24,7 @@ export default class Environment {
 		this.fog = new Fog()
 
 		this.setSunLight()
-		this.setEnvironmentMap()
+		// this.setEnvironmentMap()
 	}
 
 	setSunLight() {
@@ -78,6 +78,7 @@ export default class Environment {
 		this.environmentMap.texture.encoding = THREE.sRGBEncoding
 
 		this.scene.environment = this.environmentMap.texture
+		this.scene.background = this.environmentMap.texture
 
 		this.environmentMap.updateMaterials = () => {
 			this.scene.traverse((child) => {
