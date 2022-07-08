@@ -25,7 +25,11 @@ export default class Camera {
 			0.1,
 			100
 		)
-		this.instance.position.set(3.6, 2.29, 3.718)
+		this.instance.position.set(
+			6.190935282316349,
+			3.2890320479732775,
+			7.512166971887763
+		)
 		this.scene.add(this.instance)
 	}
 
@@ -40,7 +44,7 @@ export default class Camera {
 		this.controls.maxAzimuthAngle = 1.75
 		this.controls.minAzimuthAngle = -0.1
 		// amount of possible dollying out.
-		this.controls.maxDistance = 5
+		this.controls.maxDistance = 10
 		// how far to orbit vertically, default pi radians, max is pi.
 		this.controls.maxPolarAngle = Math.PI / 2
 		this.controls.minPolarAngle = Math.PI / 4
@@ -78,8 +82,10 @@ export default class Camera {
 		this.instance.updateProjectionMatrix()
 	}
 
+	//
 	update() {
 		this.controls.update()
 		// console.log(this.controls.target)
+		// console.log(this.instance.position)
 	}
 }

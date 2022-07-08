@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 
 import Experience from '../Experience'
+import ZoomInOnLoad from './animations/ZoomInOnLoad'
 import RoomBakes from './RoomBakes'
 
 import SteamCylinder from './SteamCylinder'
@@ -15,13 +16,10 @@ export default class Room {
 		// Scene
 		this.resource_theDojo = this.resources.items.theDojo
 
-		// this.modelTest1Resource = this.resources.items.model1
-
 		// -> Scene Textures (bakedTextures)
 		this.roomBakes = new RoomBakes()
 
 		// -> Shaders
-
 		this.steamCylinder = new SteamCylinder(
 			'steamCone',
 			'steamCone',
@@ -36,6 +34,7 @@ export default class Room {
 
 		// -> Animations
 		this.clock = new THREE.Clock()
+		this.zoomInOnLoad = new ZoomInOnLoad()
 
 		// Debug
 		if (this.debug.active) {
