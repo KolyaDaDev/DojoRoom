@@ -1,10 +1,9 @@
 import * as THREE from 'three'
 
 import Experience from '../Experience'
-import ZoomInOnLoad from './animations/ZoomInOnLoad'
 import RoomBakes from './RoomBakes'
-
 import SteamCylinder from './SteamCylinder'
+import Raycaster from '../Utils/Raycaster'
 export default class Room {
 	constructor() {
 		this.experience = new Experience()
@@ -34,7 +33,6 @@ export default class Room {
 
 		// -> Animations
 		this.clock = new THREE.Clock()
-		this.zoomInOnLoad = new ZoomInOnLoad()
 
 		// Debug
 		if (this.debug.active) {
@@ -42,6 +40,10 @@ export default class Room {
 		}
 
 		this.setModel()
+		this.raycaster = new Raycaster(
+			this.resource_theDojo,
+			this.experience.camera.controls.object.position
+		)
 		// this.setDebug()
 	}
 
@@ -117,5 +119,7 @@ export default class Room {
 
 		this.steamCylinder.update()
 		this.steamCylinderLeft.update()
+
+		this.raycaster.update()
 	}
 }

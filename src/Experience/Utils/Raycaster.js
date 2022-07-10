@@ -16,12 +16,17 @@ export default class Raycaster extends EventEmitter {
 		this.sizes = this.experience.sizes
 		this.mouse = new THREE.Vector2()
 
+		// interactions
+		this.webglStyle = document.querySelector('.webgl').style
+		this.tapeHovered = false
+		this.chestHovered = false
+		this.gongHovered = false
+		this.templeSymbolHovered = false
+		this.grabOpen = true
 		// create Raycaster
 		this.createRaycaster()
 
 		// create event listeners
-		this.showSign = false
-		this.infoBox = document.querySelector('.infoBox')
 	}
 
 	createRaycaster() {
@@ -30,7 +35,12 @@ export default class Raycaster extends EventEmitter {
 		this.rayDirection = new THREE.Vector3(0, 0, 1)
 		this.rayDirection.normalize()
 
-		this.raycaster = new THREE.Raycaster(this.rayOrigin, this.rayDirection, 0, 3)
+		this.raycaster = new THREE.Raycaster(
+			this.rayOrigin,
+			this.rayDirection,
+			0,
+			100
+		)
 
 		// for use with mouse targeting
 		window.addEventListener('mousemove', (e) => {
@@ -39,85 +49,39 @@ export default class Raycaster extends EventEmitter {
 			// lol the pointer lock is locking the mouse at one coord on screen!
 			this.trigger('mousemoved')
 		})
+
+		// interactions
+		document.querySelector('.webgl').addEventListener('click', () => {
+			this.tapeHovered ? console.log('clicked tape') : null
+		})
+
+		document.querySelector('.webgl').addEventListener('mousedown', () => {
+			this.grabOpen = false
+			this.webglStyle.cursor = 'grabbing'
+		})
+		document.querySelector('.webgl').addEventListener('mouseup', () => {
+			this.grabOpen = true
+		})
 	}
 
-	showNotice(board) {
-		switch (board) {
-			case 'stonesBoard':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Some weird alien rocks...'
-				console.log('added visible')
-				break
-			case 'redBoard':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML =
-					'Project Eldia - A full stack application using MongoDB, Express, React, Node. Currently underdevelopment. Aim is to become a fully interactive MMORPG using ThreeJS as the 3D generator.  '
-				console.log('added visible')
-				break
-			case 'purpleBoard':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML =
-					'A static PWA made with Gatsby for a local Judo club.'
-				console.log('added visible')
-				break
-			case 'greenBoard':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Random mysterious portal...'
-				break
-			case 'blueBoard':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Enter to visit my linkedIn page and get in touch'
+	// showNotice(board) {
+	// 	switch (board) {
+	// 		case 'stonesBoard':
+	// 			this.showSign = true
+	// 			this.infoBox.classList.add('visible')
+	// 			this.infoBox.innerHTML = 'Some weird alien rocks...'
+	// 			console.log('added visible')
+	// 			break
 
-				break
-			case 'yellowBoard':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML =
-					'A Basic portfolio template mixing ThreeJS and standard FrontEnd web technologies.'
+	// 		default:
+	// 			break
+	// 	}
 
-				break
-			case 'yellowPoint':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Space Theme Portfolio Project'
+	// 	setTimeout(() => {
 
-				break
-			case 'redPoint':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Project Eldia'
+	// 	}, 4000)
+	// }
 
-				break
-			case 'greenPoint':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Mysterious Green Portal'
-				console.log('added')
-				break
-			case 'bluePoint':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Social'
-				break
-			case 'purplePoint':
-				this.showSign = true
-				this.infoBox.classList.add('visible')
-				this.infoBox.innerHTML = 'Gatsby PWA'
-				break
-			default:
-				break
-		}
-
-		setTimeout(() => {
-			this.infoBox.classList.remove('visible')
-			this.showSign = false
-		}, 4000)
-	}
 	update() {
 		this.raycaster.setFromCamera(this.mouse, this.camera)
 		this.intersectObjects = this.raycaster.intersectObjects(
@@ -127,51 +91,32 @@ export default class Raycaster extends EventEmitter {
 		if (this.intersectObjects.length) {
 			this.distanceToObject = this.intersectObjects[0].object
 			switch (this.distanceToObject.name) {
-				case 'stonesBoard':
-					this.showNotice(this.distanceToObject.name)
+				case 'merged_tape':
+					this.webglStyle.cursor = 'pointer'
+					this.tapeHovered = true
+					break
+				case 'merged_chest':
+					this.webglStyle.cursor = 'pointer'
+					this.chestHovered = true
+					break
+				case 'merged_gong':
+					this.webglStyle.cursor = 'pointer'
+					this.gongHovered = true
+					break
+				case 'merged_temple_symbol':
+					this.webglStyle.cursor = 'pointer'
+					this.templeSymbolHovered = true
+					break
+				case 'merged_dojo':
+					this.tapeHovered = false
+					this.tapeHovered = false
+					this.chestHovered = false
+					this.gongHovered = false
+					this.templeSymbolHovered = false
+
+					this.grabOpen ? (this.webglStyle.cursor = 'grab') : null
 
 					break
-				case 'redBoard':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'purpleBoard':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'greenBoard':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'blueBoard':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'yellowBoard':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'yellowPoint':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'redPoint':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'greenPoint':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'bluePoint':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-				case 'purplePoint':
-					this.showNotice(this.distanceToObject.name)
-
-					break
-
 				default:
 					break
 			}

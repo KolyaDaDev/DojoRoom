@@ -48,7 +48,6 @@ export default class LoadingScreen {
 				// calculate progress and transform loading loadingBarElement
 				const progressRatio = itemsLoaded / itemsTotal
 				this.loadingBarElement.style.transform = `scaleX(${progressRatio})`
-				console.log(progressRatio)
 			}
 		)
 	}
