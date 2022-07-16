@@ -15,44 +15,96 @@ export default [
 	{
 		name: 'theDojo',
 		type: 'gltfModel',
-		path: 'models/TheDojoV3.glb',
+		path: 'models/TheDojo.glb',
+	},
+	// <---------- DAY TIME ----------->
+	{
+		name: 'bakedDay',
+		type: 'texture',
+		path: 'models/DAY/bakedDay.jpg',
 	},
 
 	{
-		name: 'bakedTexture',
+		name: 'helioDay',
 		type: 'texture',
-		path: 'models/baked.jpg',
+		path: 'models/DAY/helio.jpg',
+	},
+	{
+		name: 'kanoDay',
+		type: 'texture',
+		path: 'models/DAY/kano.jpg',
+	},
+	{
+		name: 'symbolDay',
+		type: 'texture',
+		path: 'models/DAY/symbol.jpg',
+	},
+	{
+		name: 'leftSymbolDay',
+		type: 'texture',
+		path: 'models/DAY/leftSymbol.jpg',
+	},
+	{
+		name: 'rightSymbolDay',
+		type: 'texture',
+		path: 'models/DAY/rightSymbol.jpg',
+	},
+	{
+		name: 'whiteOnlyDay',
+		type: 'texture',
+		path: 'models/DAY/templeNoStripes/whiteOnly.jpg',
+	},
+	{
+		name: 'blueOnlyDay',
+		type: 'texture',
+		path: 'models/DAY/templeNoStripes/blueOnly.jpg',
+	},
+	{
+		name: 'purpleOnlyDay',
+		type: 'texture',
+		path: 'models/DAY/templeNoStripes/purpleOnly.jpg',
+	},
+	{
+		name: 'brownOnlyDay',
+		type: 'texture',
+		path: 'models/DAY/templeNoStripes/brownOnly.jpg',
+	},
+	{
+		name: 'blackOnlyDay',
+		type: 'texture',
+		path: 'models/DAY/templeNoStripes/blackOnly.jpg',
+	},
+	// <---------- SUNSET ----------->
+	{
+		name: 'bakedSunset',
+		type: 'texture',
+		path: 'models/SUNSET/bakedSunset.jpg',
 	},
 
 	{
-		name: 'bakedHelio',
+		name: 'helioSunset',
 		type: 'texture',
-		path: 'models/bakedHelio.jpg',
+		path: 'models/SUNSET/helioSunset.jpg',
 	},
 	{
-		name: 'bakedKano',
+		name: 'kanoSunset',
 		type: 'texture',
-		path: 'models/bakedKano.jpg',
+		path: 'models/SUNSET/kanoSunset.jpg',
 	},
 	{
-		name: 'bakedSymbolsRight',
+		name: 'symbolSunset',
 		type: 'texture',
-		path: 'models/bakedSymbolsRight.jpg',
+		path: 'models/SUNSET/symbol.jpg',
 	},
 	{
-		name: 'bakedSymbolsLeftTop',
+		name: 'leftSymbolSunset',
 		type: 'texture',
-		path: 'models/bakedSymbolsLeftTop.jpg',
+		path: 'models/SUNSET/leftSymbolSunset.jpg',
 	},
 	{
-		name: 'bakedSymbolsLeftBottom',
+		name: 'rightSymbolSunset',
 		type: 'texture',
-		path: 'models/bakedSymbolsLeftBottom.jpg',
-	},
-	{
-		name: 'bakedTempleSymbols',
-		type: 'texture',
-		path: 'models/bakedTempleSymbols.jpg',
+		path: 'models/SUNSET/rightSymbolSunset.jpg',
 	},
 
 	// TESTING

@@ -17,6 +17,12 @@ export default class Room {
 
 		// -> Scene Textures (bakedTextures)
 		this.roomBakes = new RoomBakes()
+		this.model_theDojo = this.resource_theDojo.scene
+
+		// tape for animation
+		this.tape = this.model_theDojo.children.find(
+			(child) => child.name === 'merged_tape'
+		)
 
 		// -> Shaders
 		this.steamCylinder = new SteamCylinder(
@@ -39,7 +45,11 @@ export default class Room {
 			this.debugFolder = this.debug.ui.addFolder('Room Master')
 		}
 
-		this.setModel()
+		this.dayOrNight = new Date()
+		this.hour = this.dayOrNight.getHours()
+
+		9 < this.hour < 18 ? this.setModelDay() : this.setModelSunset()
+
 		this.raycaster = new Raycaster(
 			this.resource_theDojo,
 			this.experience.camera.controls.object.position
@@ -47,66 +57,87 @@ export default class Room {
 		// this.setDebug()
 	}
 
-	setModel() {
+	setModelDay() {
 		// objects & emissions
 
-		this.model_theDojo = this.resource_theDojo.scene
 		this.model_theDojo.traverse((c) => {
-			c.material = this.roomBakes.bakedMaterial
+			c.material = this.roomBakes.bakedDay.readyMateral
 		})
 
-		// this.modelTest1 = this.modelTest1Resource.scene
-		// this.modelTest1.traverse((c) => {
-		// 	c.material = this.roomBakes.model1bakeMaterial
-		// })
-		console.log(this.model_theDojo)
-
-		// tape for animation
-		this.tape = this.model_theDojo.children.find(
-			(child) => child.name === 'merged_tape'
-		)
-		console.log(this.tape)
-
-		// pictures on wall of Helio and Kano & symbols on wall scrolls
+		console.log(this.model_theDojo, 'room group')
 
 		for (let i = 0; i < this.model_theDojo.children.length; i++) {
 			switch (this.model_theDojo.children[i].name) {
 				case 'merged_Helio':
 					this.picture_1 = this.model_theDojo.children[i]
-					this.picture_1.material = this.roomBakes.bakedHelioMaterial
+					this.picture_1.material = this.roomBakes.helioDay.readyMateral
 					break
 				case 'merged_Kano':
 					this.picture_2 = this.model_theDojo.children[i]
 					console.log(this.picture_2, 'pic 2')
-					this.picture_2.material = this.roomBakes.bakedKanoMaterial
+					this.picture_2.material = this.roomBakes.kanoDay.readyMateral
 					break
 				case 'merged_right_symbol':
 					this.scroll_1 = this.model_theDojo.children[i]
-					this.scroll_1.material = this.roomBakes.bakedSymbolsRightMaterial
+					this.scroll_1.material = this.roomBakes.rightSymbolDay.readyMateral
 					break
-				case 'merged_bottom_left_symbol':
+				case 'merged_left_symbol':
 					this.scroll_2 = this.model_theDojo.children[i]
-					this.scroll_2.material = this.roomBakes.bakedSymbolsLeftBottomMaterial
-					break
-				case 'merged_top_left_symbol':
-					this.scroll_2 = this.model_theDojo.children[i]
-					this.scroll_2.material = this.roomBakes.bakedSymbolsLeftTopMaterial
+					this.scroll_2.material = this.roomBakes.leftSymbolDay.readyMateral
 					break
 				case 'merged_temple_symbol':
 					this.templeSymbols = this.model_theDojo.children[i]
-					console.log(this.templeSymbols)
-					this.templeSymbols.material = this.roomBakes.bakedTempleSymbolsMaterial
+					this.templeSymbols.material = this.roomBakes.symbolDay.readyMateral
+					break
+				case 'merged_no_stripe_temple':
+					this.templeSymbols = this.model_theDojo.children[i]
+					this.templeSymbols.material = this.roomBakes.whiteOnlyDay.readyMateral
 					break
 				default:
 					break
 			}
 		}
-		// this.templeSymbols.position.y = 5
-		// this.templeSymbols.scale.set(5, 5, 5)
 
-		//scene elements [call the joined main model "joinedBake"]
-		// this.mainRoom = this.model.children.find(()=>child.name === "joinedBake")
-		// this.mainRoom.material = this.bakedMaterial
+		this.scene.add(this.model_theDojo)
+	}
+
+	setModelSunset() {
+		// objects & emissions
+
+		this.model_theDojo.traverse((c) => {
+			c.material = this.roomBakes.bakedSunset.readyMateral
+		})
+
+		console.log(this.model_theDojo, 'room group')
+
+		for (let i = 0; i < this.model_theDojo.children.length; i++) {
+			switch (this.model_theDojo.children[i].name) {
+				case 'merged_Helio':
+					this.picture_1 = this.model_theDojo.children[i]
+					this.picture_1.material = this.roomBakes.helioSunset.readyMateral
+					break
+				case 'merged_Kano':
+					this.picture_2 = this.model_theDojo.children[i]
+					console.log(this.picture_2, 'pic 2')
+					this.picture_2.material = this.roomBakes.kanoSunset.readyMateral
+					break
+				case 'merged_right_symbol':
+					this.scroll_1 = this.model_theDojo.children[i]
+					this.scroll_1.material = this.roomBakes.rightSymbolSunset.readyMateral
+					break
+				case 'merged_left_symbol':
+					this.scroll_2 = this.model_theDojo.children[i]
+					this.scroll_2.material = this.roomBakes.leftSymbolSunset.readyMateral
+					break
+				case 'merged_temple_symbol':
+					this.templeSymbols = this.model_theDojo.children[i]
+					console.log(this.templeSymbols)
+					this.templeSymbols.material = this.roomBakes.symbolSunset.readyMateral
+					break
+				default:
+					break
+			}
+		}
 
 		this.scene.add(this.model_theDojo)
 	}

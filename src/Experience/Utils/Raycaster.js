@@ -51,6 +51,7 @@ export default class Raycaster extends EventEmitter {
 		})
 
 		// interactions
+		// do the same for other objects when ready -->
 		document.querySelector('.webgl').addEventListener('click', () => {
 			this.tapeHovered ? console.log('clicked tape') : null
 		})
