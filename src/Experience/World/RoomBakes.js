@@ -11,13 +11,14 @@ export default class RoomBakes {
 		this.resources = this.experience.resources
 
 		// -> Day
-		this.bakedDay = new TextureHelper('bakedDay')
-		this.helioDay = new TextureHelper('helioDay')
-		this.kanoDay = new TextureHelper('kanoDay')
-		this.rightSymbolDay = new TextureHelper('rightSymbolDay')
-		this.leftSymbolDay = new TextureHelper('leftSymbolDay')
-		this.symbolDay = new TextureHelper('symbolDay')
-		this.whiteOnlyDay = new TextureHelper('whiteOnlyDay')
+		// this.bakedDay = new TextureHelper('bakedDay')
+		// this.helioDay = new TextureHelper('helioDay')
+		// this.kanoDay = new TextureHelper('kanoDay')
+		// this.rightSymbolDay = new TextureHelper('rightSymbolDay')
+		// this.leftSymbolDay = new TextureHelper('leftSymbolDay')
+		// this.symbolDay = new TextureHelper('symbolDay')
+
+		// this.blackOnlyDay = new TextureHelper('whiteOnlyDay')
 
 		// -> Night
 		this.bakedSunset = new TextureHelper('bakedSunset')
@@ -26,6 +27,8 @@ export default class RoomBakes {
 		this.rightSymbolSunset = new TextureHelper('rightSymbolSunset')
 		this.leftSymbolSunset = new TextureHelper('leftSymbolSunset')
 		this.symbolSunset = new TextureHelper('symbolSunset')
+
+		this.whiteOnlySunset = new TextureHelper('whiteOnlySunset')
 
 		// this. = new TextureHelper('')
 		// this. = new TextureHelper('')

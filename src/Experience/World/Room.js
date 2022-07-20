@@ -48,7 +48,8 @@ export default class Room {
 		this.dayOrNight = new Date()
 		this.hour = this.dayOrNight.getHours()
 
-		9 < this.hour < 18 ? this.setModelDay() : this.setModelSunset()
+		// this.hour < 18 ? this.setModelDay() : this.setModelSunset()
+		this.setModelSunset()
 
 		this.raycaster = new Raycaster(
 			this.resource_theDojo,
@@ -59,7 +60,7 @@ export default class Room {
 
 	setModelDay() {
 		// objects & emissions
-
+		console.log('day')
 		this.model_theDojo.traverse((c) => {
 			c.material = this.roomBakes.bakedDay.readyMateral
 		})
@@ -90,8 +91,38 @@ export default class Room {
 					this.templeSymbols.material = this.roomBakes.symbolDay.readyMateral
 					break
 				case 'merged_no_stripe_temple':
-					this.templeSymbols = this.model_theDojo.children[i]
-					this.templeSymbols.material = this.roomBakes.whiteOnlyDay.readyMateral
+					this.temple = this.model_theDojo.children[i]
+					this.temple.material = this.roomBakes.blackOnlyDay.readyMateral
+					break
+				case 'merged_stripe_temple':
+					this.templeStripe = this.model_theDojo.children[i]
+					this.templeStripe.removeFromParent()
+					// this.templeStripe.material = this.roomBakes.blackOnlyDay.readyMateral
+					break
+				case 'merged_no_stripe':
+					this.templeStripeBareStripe = this.model_theDojo.children[i]
+					this.templeStripeBareStripe.removeFromParent()
+					// this.templeStripe.material = this.roomBakes.blackOnlyDay.readyMateral
+					break
+				case 'merged_1_stripe':
+					this.templeStripe1 = this.model_theDojo.children[i]
+					this.templeStripe1.removeFromParent()
+					// this.templeStripe.material = this.roomBakes.blackOnlyDay.readyMateral
+					break
+				case 'merged_2_stripe':
+					this.templeStripe2 = this.model_theDojo.children[i]
+					this.templeStripe2.removeFromParent()
+					// this.templeStripe.material = this.roomBakes.blackOnlyDay.readyMateral
+					break
+				case 'merged_3_stripe':
+					this.templeStripe3 = this.model_theDojo.children[i]
+					this.templeStripe3.removeFromParent()
+					// this.templeStripe.material = this.roomBakes.blackOnlyDay.readyMateral
+					break
+				case 'merged_4_stripe':
+					this.templeStripe4 = this.model_theDojo.children[i]
+					this.templeStripe4.removeFromParent()
+					// this.templeStripe.material = this.roomBakes.blackOnlyDay.readyMateral
 					break
 				default:
 					break
@@ -103,10 +134,36 @@ export default class Room {
 
 	setModelSunset() {
 		// objects & emissions
+		console.log('sunset')
 
 		this.model_theDojo.traverse((c) => {
 			c.material = this.roomBakes.bakedSunset.readyMateral
 		})
+
+		this.mergedTempleToRemove = this.model_theDojo.children.find(
+			(el) => el.name === 'merged_no_stripe'
+		)
+		this.mergedTempleToRemove.removeFromParent()
+
+		this.mergedTempleToRemove = this.model_theDojo.children.find(
+			(el) => el.name === 'merged_1_stripe'
+		)
+		this.mergedTempleToRemove.removeFromParent()
+
+		this.mergedTempleToRemove = this.model_theDojo.children.find(
+			(el) => el.name === 'merged_2_stripe'
+		)
+		this.mergedTempleToRemove.removeFromParent()
+
+		this.mergedTempleToRemove = this.model_theDojo.children.find(
+			(el) => el.name === 'merged_3_stripe'
+		)
+		this.mergedTempleToRemove.removeFromParent()
+
+		this.mergedTempleToRemove = this.model_theDojo.children.find(
+			(el) => el.name === 'merged_4_stripe'
+		)
+		this.mergedTempleToRemove.removeFromParent()
 
 		console.log(this.model_theDojo, 'room group')
 
@@ -133,6 +190,10 @@ export default class Room {
 					this.templeSymbols = this.model_theDojo.children[i]
 					console.log(this.templeSymbols)
 					this.templeSymbols.material = this.roomBakes.symbolSunset.readyMateral
+					break
+				case 'merged_no_stripe_temple':
+					this.temple = this.model_theDojo.children[i]
+					this.temple.material = this.roomBakes.whiteOnlySunset.readyMateral
 					break
 				default:
 					break

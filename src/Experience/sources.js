@@ -18,57 +18,57 @@ export default [
 		path: 'models/TheDojo.glb',
 	},
 	// <---------- DAY TIME ----------->
-	{
-		name: 'bakedDay',
-		type: 'texture',
-		path: 'models/DAY/bakedDay.jpg',
-	},
+	// {
+	// 	name: 'bakedDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/bakedDay.jpg',
+	// },
 
-	{
-		name: 'helioDay',
-		type: 'texture',
-		path: 'models/DAY/helio.jpg',
-	},
-	{
-		name: 'kanoDay',
-		type: 'texture',
-		path: 'models/DAY/kano.jpg',
-	},
-	{
-		name: 'symbolDay',
-		type: 'texture',
-		path: 'models/DAY/symbol.jpg',
-	},
-	{
-		name: 'leftSymbolDay',
-		type: 'texture',
-		path: 'models/DAY/leftSymbol.jpg',
-	},
-	{
-		name: 'rightSymbolDay',
-		type: 'texture',
-		path: 'models/DAY/rightSymbol.jpg',
-	},
-	{
-		name: 'whiteOnlyDay',
-		type: 'texture',
-		path: 'models/DAY/templeNoStripes/whiteOnly.jpg',
-	},
-	{
-		name: 'blueOnlyDay',
-		type: 'texture',
-		path: 'models/DAY/templeNoStripes/blueOnly.jpg',
-	},
-	{
-		name: 'purpleOnlyDay',
-		type: 'texture',
-		path: 'models/DAY/templeNoStripes/purpleOnly.jpg',
-	},
-	{
-		name: 'brownOnlyDay',
-		type: 'texture',
-		path: 'models/DAY/templeNoStripes/brownOnly.jpg',
-	},
+	// {
+	// 	name: 'helioDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/helio.jpg',
+	// },
+	// {
+	// 	name: 'kanoDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/kano.jpg',
+	// },
+	// {
+	// 	name: 'symbolDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/symbol.jpg',
+	// },
+	// {
+	// 	name: 'leftSymbolDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/leftSymbol.jpg',
+	// },
+	// {
+	// 	name: 'rightSymbolDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/rightSymbol.jpg',
+	// },
+	// {
+	// 	name: 'whiteOnlyDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/templeNoStripes/whiteOnly.jpg',
+	// },
+	// {
+	// 	name: 'blueOnlyDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/templeNoStripes/blueOnly.jpg',
+	// },
+	// {
+	// 	name: 'purpleOnlyDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/templeNoStripes/purpleOnly.jpg',
+	// },
+	// {
+	// 	name: 'brownOnlyDay',
+	// 	type: 'texture',
+	// 	path: 'models/DAY/templeNoStripes/brownOnly.jpg',
+	// },
 	{
 		name: 'blackOnlyDay',
 		type: 'texture',
@@ -105,6 +105,31 @@ export default [
 		name: 'rightSymbolSunset',
 		type: 'texture',
 		path: 'models/SUNSET/rightSymbolSunset.jpg',
+	},
+	{
+		name: 'whiteOnlySunset',
+		type: 'texture',
+		path: 'models/SUNSET/templeNoStripes/whiteOnly.jpg',
+	},
+	{
+		name: 'blueOnlySunset',
+		type: 'texture',
+		path: 'models/SUNSET/templeNoStripes/blueOnly.jpg',
+	},
+	{
+		name: 'purpleOnlySunset',
+		type: 'texture',
+		path: 'models/SUNSET/templeNoStripes/purpleOnly.jpg',
+	},
+	{
+		name: 'brownOnlySunset',
+		type: 'texture',
+		path: 'models/SUNSET/templeNoStripes/brownOnly.jpg',
+	},
+	{
+		name: 'blackOnlySunset',
+		type: 'texture',
+		path: 'models/SUNSET/templeNoStripes/blackOnly.jpg',
 	},
 
 	// TESTING
